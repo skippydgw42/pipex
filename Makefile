@@ -7,29 +7,25 @@ CFLAGS = -Wall -Wextra -Werror
 HEADER =	\
 			./includes/pipex.h		\
 
-BONUS =		\
-			./bonus/pipex_bonus.c	\
-
 PARSING =	\
-			./parsing/check_files.c	\
-			./parsing/parsinit.c	\
+			./parsing/parsing.c		\
 
 ADD =	\
-		./add/free.c				\
 		./add/err.c					\
 		./add/flags.c				\
+		./add/free.c				\
 		./add/utils.c				\
 
 INIT =	\
-		./init/get_paths.c			\
-		./init/init_struct.c		\
+		./init/get_things.c			\
+		./init/init.c				\
 
 SRCS =	\
 		./srcs/main.c				\
+		./srcs/pipex.c				\
 		${PARSING}					\
 		${INIT}						\
 		${ADD}						\
-		#./srcs/pipex.c				\
 
 OBJS = ${SRCS:.c=.o}
 OBJS_BON = ${BONUS:.c=.o}

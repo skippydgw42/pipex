@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:32:23 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/02/25 13:34:51 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:57:32 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	err_mess(char *str, char **dstr)
 {
 	if (dstr)
 		free_doubleptr(dstr);
-	ft_putstr(str);
+	ft_putstr_fd(str, 2);
 	return (0);
 }
 
@@ -37,5 +37,11 @@ int	err_a(char *str, t_struct *vars)
 {
 	free_struct(vars);
 	ft_putstr(str);
+	return (0);
+}
+
+int	p_error(char *str)
+{
+	perror(str);
 	return (0);
 }

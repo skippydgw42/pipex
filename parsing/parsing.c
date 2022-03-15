@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsinit.c                                         :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 15:39:28 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/03/01 15:13:53 by mdegraeu         ###   ########.fr       */
+/*   Created: 2022/03/09 12:05:47 by mdegraeu          #+#    #+#             */
+/*   Updated: 2022/03/15 11:37:03 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	parsinit(int ac, char **av, char **env, t_struct *vars)
+int	check_files(char **av)
 {
-	int	i;
-	int	j;
-
-	i = 2;
-	j = 0;
-	if (!parsing(ac, av, env, vars))
+	if (!av[1] || access(av[1], F_OK) == -1 || access(av[1], R_OK) == -1)
+		return (p_error(av[1]));
+	if (!av[4])
 		return (0);
-	while (i < ac - 1)
-	{
-		if (ft_strlen(av[i]) > 0)
-		{
-			vars->cmd[j] = get_cmd(av[i], env);
-			j++;
-		}
-		i++;
-		// if (vars->cmd[j - 1][ft_strlen(vars->cmd[j - 1]) - 1] == '/')
-		// {
-		// 	j--;
-		// 	free(vars->cmd[j]);
-		// }
-	}
-	vars->cmd[j] = 0;
+	return (1);
+}
+
+int	parsing(int ac, char **av)
+{
+	if (ac != 5)
+		return (p_error("Bad Args Count"));
+	if (!check_files(av))
+		return (0);
 	return (1);
 }
