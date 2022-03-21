@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:03:51 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/03/15 13:17:25 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:31:44 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ int	paths_cmd(t_struct *vars)
 
 int	init_struct(int ac, char **av, char **env, t_struct *vars)
 {
+	vars->i = 0;
 	vars->ac = ac - 1;
 	vars->nb_pipe = vars->ac - 3;
+	vars->arr_size = vars->nb_pipe * 2;
 	if (!get_files(av, vars))
 		return (0);
 	if (!get_paths(env, vars))
@@ -98,6 +100,9 @@ int	init_struct(int ac, char **av, char **env, t_struct *vars)
 	if (!vars->p_cmd)
 		return (0);
 	if (!paths_cmd(vars))
+		return (0);
+	vars->array = malloc(sizeof(int) * (vars->arr_size));
+	if (!vars->array)
 		return (0);
 	return (1);
 }

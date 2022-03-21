@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:24:44 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/03/15 13:01:49 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:07:38 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ typedef struct s_struct
 	char	**env;
 	char	**f_cmd;
 	char	**p_cmd;
+	int		*array;
+	int		arr_size;
 	int		nb_pipe;
+	int		i;
+	int		fd;
 }	t_struct;
 
 //========ADD==========//
@@ -43,11 +47,13 @@ void	free_struct(t_struct *vars);
 int		hm_cmd(char **cmd);
 char	*split_flags(char *av);
 char	**get_flags(char *av);
+void	close_pipe(t_struct *vars);
 
 //========INIT=========//
 int		get_paths(char **env, t_struct *vars);
 int		get_files(char **av, t_struct *vars);
 int		init_struct(int ac, char **av, char **env, t_struct *vars);
+int		init_pipe(t_struct *vars);
 
 //=======PARSING=======//
 int		parsing(int ac, char **av);
@@ -55,5 +61,8 @@ int		check_files(char **av);
 
 //========SRCS========//
 int		pipex(t_struct *vars);
+
+//========TO DEL======//
+void	print(char *title, char **str);
 
 #endif

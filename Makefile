@@ -15,10 +15,12 @@ ADD =	\
 		./add/flags.c				\
 		./add/free.c				\
 		./add/utils.c				\
+		./add/close.c				\
 
 INIT =	\
 		./init/get_things.c			\
 		./init/init.c				\
+		./init/pipe.c				\
 
 SRCS =	\
 		./srcs/main.c				\
